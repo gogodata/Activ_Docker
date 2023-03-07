@@ -40,13 +40,18 @@ https://docs.docker.com/reference/
 En pratique, il est assez rare d'utiliser la CLI docker dans un projet.
 On build nos images avec un Dockerfile et on paramètre nos containers avec Compose.  
 
+## La principale différence entre Dockerfile et docker-compose
+Le contenu d'un Dockerfile décrit comment créer et construire une image Docker, tandis que docker compose est une commande qui exécute des conteneurs Docker en fonction des paramètres décrits dans un fichier docker-compose.yaml.  
+
+
 
 # Démarrage
 
 Comme on est sur MAC, on utilise le runtimes docker Colima :  
-`colima start`
-
+`colima start`. 
 
 Si besoin, on peut donner des paramètres de lancement pour augmenter les ressources allouées :  
-`colima start --cpu 4 --memory 8 --disk 100`
+`colima start --cpu 4 --memory 8 --disk 100`.  
+
+
 
