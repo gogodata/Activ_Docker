@@ -37,7 +37,7 @@ https://docs.docker.com/develop/
 Différentes méthodes de configuration d'environnement (Dockerfile, Composefile, CLI etc..) :
 https://docs.docker.com/reference/
 
-En pratique, il est assez rare d'utiliser la CLI docker dans un projet.  
+En pratique, il est assez rare d'utiliser la CLI docker dans un projet.
 On build nos images avec un Dockerfile et on paramètre nos containers avec Compose.  
 
 
