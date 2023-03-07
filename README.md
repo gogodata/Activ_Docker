@@ -14,7 +14,7 @@ Pour Windows, quelques adaptations sont à prévoir (WSL etc..)
 - Homebrew (packages manager)
 - Colima : suite à la mise à jour des accords de service le 31 août 2021, l'utilisation de Docker Desktop en milieu pro est payante, donc on choisit l'alternative open-source Colima. Colima est une VM qui fournit des runtimes docker sur MacOS et Linux.
 - IDE (VS Code pour moi)
-- Créer un compte Docker Hub si pas déjà fait
+- Avoir/Créer un compte Docker Hub
 
 # Documentation Docker
 
