@@ -11,3 +11,5 @@ Version MacOS à jour
 Homebrew (packages manager)
 
 Colima (runtimes docker)
+
+IDE (VS Code pour moi)
