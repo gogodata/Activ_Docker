@@ -26,13 +26,9 @@ Pour avoir une perspective sur l'outil :
 https://docs.docker.com/get-started/overview/
 
 Manuels importants sur Docker :
-
 https://docs.docker.com/engine/
-
 https://docs.docker.com/build/
-
 https://docs.docker.com/compose/
-
 https://docs.docker.com/docker-hub/
 
 
@@ -52,6 +48,5 @@ Comme on est sur MAC, on utilise le runtimes docker Colima :
 colima start
 
 Si besoin, on peut donner des paramètres de lancement pour augmenter les ressources allouées :
-
 colima start --cpu 4 --memory 8 --disk 100
 
