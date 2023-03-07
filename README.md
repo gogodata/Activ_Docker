@@ -10,11 +10,11 @@ Pour Windows, quelques adaptations sont à prévoir (WSL etc..)
 
 # Prérequis
 
-  Version MacOS à jour
-  Homebrew (packages manager)
-  Colima : suite à la mise à jour des accords de service le 31 août 2021, l'utilisation de Docker Desktop en milieu pro est payante, donc on choisit l'alternative open-source Colima. Colima est une VM qui fournit des runtimes docker sur MacOS et Linux.
-  IDE (VS Code pour moi)
-  Créer un compte Docker Hub si pas déjà fait
+- Version MacOS à jour
+- Homebrew (packages manager)
+- Colima : suite à la mise à jour des accords de service le 31 août 2021, l'utilisation de Docker Desktop en milieu pro est payante, donc on choisit l'alternative open-source Colima. Colima est une VM qui fournit des runtimes docker sur MacOS et Linux.
+- IDE (VS Code pour moi)
+- Créer un compte Docker Hub si pas déjà fait
 
 # Documentation Docker
 
@@ -22,10 +22,10 @@ Pour avoir une perspective sur l'outil :
 https://docs.docker.com/get-started/overview/
 
 Manuels importants sur Docker :
--     https://docs.docker.com/engine/
--     https://docs.docker.com/build/
--     https://docs.docker.com/compose/
--     https://docs.docker.com/docker-hub/
+- https://docs.docker.com/engine/
+- https://docs.docker.com/build/
+- https://docs.docker.com/compose/
+- https://docs.docker.com/docker-hub/
 
 
 Pour créer un projet à partir d'une image Python :
