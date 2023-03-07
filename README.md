@@ -25,6 +25,17 @@ Créer un compte Docker Hub si pas déjà fait
 Pour avoir une perspective sur l'outil :
 https://docs.docker.com/get-started/overview/
 
+Manuels importants sur Docker :
+
+https://docs.docker.com/engine/
+
+https://docs.docker.com/build/
+
+https://docs.docker.com/compose/
+
+https://docs.docker.com/docker-hub/
+
+
 Pour créer un projet à partir d'une image Python :
 https://docs.docker.com/language/python/
 
