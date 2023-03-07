@@ -52,5 +52,6 @@ Comme on est sur MAC, on utilise le runtimes docker Colima :
 colima start
 
 Si besoin, on peut donner des paramètres de lancement pour augmenter les ressources allouées :
+
 colima start --cpu 4 --memory 8 --disk 100
 
