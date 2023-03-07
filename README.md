@@ -13,3 +13,5 @@ Homebrew (packages manager)
 Colima (runtimes docker)
 
 IDE (VS Code pour moi)
+
+Créer un compte Docker Hub si pas déjà fait
