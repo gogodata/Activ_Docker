@@ -43,6 +43,13 @@ On build nos images avec un Dockerfile et on paramètre nos containers avec Comp
 ## La principale différence entre Dockerfile et docker-compose
 Le contenu d'un Dockerfile décrit comment créer et construire une image Docker, tandis que docker compose est une commande qui exécute des conteneurs Docker en fonction des paramètres décrits dans un fichier docker-compose.yaml.  
 
+## Network 
+### Les intervalles de ports par défaut
+On distingue trois intervalles de ports distincts définis par Internet Assigned Numbers Authority (IANA) :  
+- Les ports de 0 à 1 023 sont essentiellement utilisés par des services et applications réseaux. Par exemple SSH, HTTP, SMTP etc. Sur Linux, l’ouverture de cette plage de ports nécessite les droit root
+- Les ports de 1 024 à 49 151 peuvent être enregistrés à IANA pour une application réseaux. Mais ils sont souvent utilisés comme port local afin d’effectuer une connexion distante. En général, ces derniers sont entre 1024 et 5000.
+- Les ports de 49 152 à 65 535 sont des ports dynamiques pour les requêtes TCP ou UDP
+
 
 
 # Démarrage
