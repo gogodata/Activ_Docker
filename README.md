@@ -56,15 +56,28 @@ Le contenu d'un Dockerfile décrit comment créer et construire une image Docker
 `docker run --rm -dit --network none --name no-net-alpine alpine:latest bash`
 - Network plugins: On peut installer des third-party network plugins avec Docker. Ils sont disponibles sur Docker Hub ou directement chez les third-party vendors. Les plugins network permettent d'étendre les déploiements pour prendre en charge un large éventail de technologies de mise en réseau, telles que VXLAN, IPVLAN, MACVLAN ou autres.
 
-## Bonnes pratiques Network
+## Bonnes pratiques Network en production
 
 Pour déployer une application en production à l'aide de Docker, il faut faire attention à la configuration réseau. Voici quelques bonnes pratiques à suivre  en environnement de production :
-- Utilisez des réseaux Docker séparés pour les différents composants de votre application : il est recommandé de créer un réseau Docker pour chaque composant de votre application (par exemple, un réseau pour la base de données, un réseau pour l'API, etc.). Cela permet d'isoler les différents composants et d'améliorer la sécurité et la gestion des réseaux.
-- Utilisez des ponts réseau personnalisés plutôt que le réseau par défaut : il est recommandé de créer des ponts réseau personnalisés pour vos différents réseaux Docker plutôt que d'utiliser le réseau par défaut de Docker. Cela vous permet de définir des paramètres de réseau personnalisés tels que des sous-réseaux, des adresses IP statiques, des noms de domaine personnalisés, etc.
-- Utilisez un réseau externe pour exposer votre application : si vous avez besoin d'exposer votre application à l'extérieur de Docker (par exemple, pour accéder à une application Web depuis un navigateur), vous pouvez créer un réseau externe Docker. Cela vous permet d'exposer les ports de votre conteneur Docker sur l'hôte Docker et de les rendre accessibles à l'extérieur.
-- Utilisez un service de découverte de services : pour améliorer la gestion des réseaux et la résilience de votre application, vous pouvez utiliser un service de découverte de services tel que Consul, etcd ou Zookeeper. Ces services permettent à vos différents composants de découvrir automatiquement les autres composants et de s'adapter aux changements de configuration en temps réel.
-- Utilisez des équilibreurs de charge pour répartir la charge : si votre application nécessite de traiter de grandes quantités de trafic, vous pouvez utiliser des équilibreurs de charge tels que HAProxy ou NGINX pour répartir la charge entre les différents conteneurs Docker de votre application.
+- Utilisez des réseaux Docker séparés pour les différents composants de votre application : il est recommandé de créer un réseau Docker pour chaque composant de votre application (par exemple, un réseau pour la base de données, un réseau pour l'API, etc.) afin d'isoler les différents composants et d'améliorer la sécurité.
+- Utilisez des ponts réseau personnalisés plutôt que le réseau par défaut : il est recommandé de définir des paramètres de réseau personnalisés tels que des sous-réseaux, des adresses IP statiques, des noms de domaine personnalisés, etc.
+- Utilisez un réseau externe pour exposer votre application : si besoin d'exposer l'application à l'extérieur de Docker (par exemple, pour accéder à une application Web depuis un navigateur), on peut créer un réseau externe Docker. Cela permet d'exposer les ports des conteneur sur l'host et de les rendre accessibles à l'extérieur.
+- Utilisez un service de découverte de services : pour améliorer la gestion des réseaux et la résilience de votre application, il est possible d'utiliser un service de découverte de services tel que Consul, etcd ou Zookeeper. Ces services permettent aux différents composants de découvrir automatiquement les autres composants et de s'adapter aux changements de configuration en temps réel.
+- Utilisez des équilibreurs de charge (load balancer) : si l'application nécessite de traiter de grandes quantités de trafic, vous pouvez utiliser des équilibreurs de charge tels que HAProxy ou NGINX pour répartir la charge entre les différents conteneurs Docker de l'application.
 
+## Exposer les ports
+
+Pour déployer une application, on doit configurer les ports exposés par chaque conteneur en fonction des besoins spécifiques de l'application. Voici quelques éléments à prendre en compte pour choisir la configuration des ports :
+
+- Déterminer quels ports sont nécessaires pour chaque service : chaque service ou application déployé dans Docker peut avoir besoin de ports spécifiques pour communiquer avec d'autres services ou pour être accessible depuis l'extérieur. Par exemple, une application Web peut avoir besoin d'exposer le port 80 pour le trafic HTTP et le port 443 pour le trafic HTTPS.
+
+- Éviter d'exposer des ports inutilement : il est important de minimiser l'exposition de ports non nécessaires pour réduire la surface d'attaque de l'applicationn notamment les ports SSH ou Telnet.
+
+- Éviter d'utiliser des ports réservés : certains ports sont réservés par le système d'exploitation ou par des applications populaires, tels que les ports 80 et 443 pour HTTP et HTTPS. Évitez d'utiliser ces ports pour éviter les conflits.
+
+- Utiliser des ports de conteneur aléatoires : on peut utiliser l'option -P pour mapper automatiquement les ports du conteneur à des ports aléatoires sur l'host Docker. C'est utile pour les conteneurs qui ont besoin de ports différents chaque fois qu'ils sont exécutés.
+
+- Utiliser des ports de conteneur définis manuellement : pour les conteneurs qui nécessitent des ports spécifiques pour communiquer avec d'autres services ou pour être accessibles depuis l'extérieur, vous pouvez utiliser l'option -p pour mapper des ports spécifiques du conteneur à des ports spécifiques sur l'host Docker. C'est utile pour les conteneurs qui ont besoin de ports spécifiques chaque fois qu'ils sont exécutés.
 
 ## Les intervalles de ports par défaut
 On distingue trois intervalles de ports distincts définis par Internet Assigned Numbers Authority (IANA) :  
