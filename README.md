@@ -118,7 +118,7 @@ On pull l'image elasticsearch :
 `docker pull elasticsearch:8.6.2`
 
 puis on run :  
-`docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:tag`
+`docker run -d --name elasticsearch --network toto_network --network-alias toto_alias -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:tag`
 
 
 A la différence des IP, les hostnames et containers names ne changent pas donc cette résolution par DNS rend la communication beaucoup plus simple, surtout avec docker compose.
