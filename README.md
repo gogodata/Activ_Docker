@@ -100,8 +100,8 @@ La commande ci-dessus lance un conteneur httpd et mappe le port 81 de l'host au 
 ## Oublier les IP pour les DNS
 
 L'utilisation d'IP statiques et d'IP pour commmuniquer avec des containers est à proscrire, c'est un anti-pattern qu'il faut éviter.  
-Le daemon Docker dispose d'un serveur DNS built-in utilisé par défaut par les containers. On utilisera donc la méthode de DNS naming pour la communication entre nos conteneurs. Docker définit par défaut le nom d'hôte sur le nom du conteneur, on peut aussi définir des alias.  
-Les alias sont indispensables dans le cas où on a besoin d'une applications identiques sur plusieurs containers différents.
+Le daemon Docker dispose d'un serveur DNS built-in utilisé par défaut par les containers. On utilisera donc la méthode de DNS naming pour la communication entre nos conteneurs.  
+Docker définit par défaut le nom d'hôte sur le nom du conteneur, on peut aussi définir des alias. Les alias sont indispensables dans le cas où on a besoin d'une applications identiques sur plusieurs containers différents.
 
 On crée notre network :  
 `docker network create toto_network`
@@ -111,8 +111,14 @@ On joue 2 fois la commande suivante pour créer 2 containers avec le meme networ
 
 <img width="1560" alt="image" src="https://user-images.githubusercontent.com/45535819/223751426-ea1a30b9-fc8d-4534-85d4-7797656920bd.png">
 
-On voit bien les 2 containers :  
+On voit bien les containers en listant :  
 ![image](https://user-images.githubusercontent.com/45535819/223752203-6c722cca-cb20-455f-b1e2-e56e0445d3da.png)
+
+On pull l'image elasticsearch :  
+`docker pull elasticsearch:8.6.2`
+
+puis on run :  
+`docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:tag`
 
 
 A la différence des IP, les hostnames et containers names ne changent pas donc cette résolution par DNS rend la communication beaucoup plus simple, surtout avec docker compose.
