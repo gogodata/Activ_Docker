@@ -134,7 +134,7 @@ A la différence des IP, les hostnames et containers names ne changent pas donc 
 Le principal problème d'un container Docker de base est que les données ne sont pas gardées sur disque une fois le container supprimé ou arrêté ?
 
 
-# Démarrage
+# Démarrage de Colima
 
 Comme on est sur MAC, on utilise le runtimes docker Colima :  
 `colima start`. 
