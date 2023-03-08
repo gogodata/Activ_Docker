@@ -73,17 +73,15 @@ Pour déployer une application, on doit configurer les ports exposés par chaque
 
 - Éviter d'exposer des ports inutilement : il est important de minimiser l'exposition de ports non nécessaires pour réduire la surface d'attaque de l'applicationn notamment les ports SSH ou Telnet.
 
-- Éviter d'utiliser des ports réservés : certains ports sont réservés par le système d'exploitation ou par des applications populaires, tels que les ports 80 et 443 pour HTTP et HTTPS. Évitez d'utiliser ces ports pour éviter les conflits.
+- Éviter d'utiliser des ports réservés : certains ports sont réservés par le système d'exploitation ou par des applications populaires, tels que les ports 80 et 443 pour HTTP et HTTPS. Évitez d'utiliser ces ports pour éviter les conflits. Pour rappel, on distingue trois intervalles de ports distincts définis par Internet Assigned Numbers Authority (IANA) :  
+  - Les ports de 0 à 1 023, ports réservés, sont essentiellement utilisés par des services et applications réseaux. Par exemple SSH, HTTP, SMTP etc.
+  - Les ports de 1 024 à 49 151, ports reconnus, sont souvent utilisés comme port local afin d’effectuer une connexion distante. En général, ces derniers sont entre 1024 et 5000.
+  - Les ports de 49 152 à 65 535 sont des ports dynamiques pour les requêtes TCP ou UDP. 
 
 - Utiliser des ports de conteneur aléatoires : on peut utiliser l'option -P pour mapper automatiquement les ports du conteneur à des ports aléatoires sur l'host Docker. C'est utile pour les conteneurs qui ont besoin de ports différents chaque fois qu'ils sont exécutés.
 
 - Utiliser des ports de conteneur définis manuellement : pour les conteneurs qui nécessitent des ports spécifiques pour communiquer avec d'autres services ou pour être accessibles depuis l'extérieur, vous pouvez utiliser l'option -p pour mapper des ports spécifiques du conteneur à des ports spécifiques sur l'host Docker. C'est utile pour les conteneurs qui ont besoin de ports spécifiques chaque fois qu'ils sont exécutés.
 
-## Les intervalles de ports par défaut
-On distingue trois intervalles de ports distincts définis par Internet Assigned Numbers Authority (IANA) :  
-- Les ports de 0 à 1 023, ports réservés, sont essentiellement utilisés par des services et applications réseaux. Par exemple SSH, HTTP, SMTP etc.
-- Les ports de 1 024 à 49 151, ports reconnus, sont souvent utilisés comme port local afin d’effectuer une connexion distante. En général, ces derniers sont entre 1024 et 5000.
-- Les ports de 49 152 à 65 535 sont des ports dynamiques pour les requêtes TCP ou UDP. 
 
 # Volume
 Le principal problème d'un container Docker de base est que les données ne sont pas gardées sur disque une fois le container supprimé ou arrêté ?
