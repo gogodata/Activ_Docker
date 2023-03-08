@@ -118,10 +118,10 @@ On voit bien les 2 containers :
 A la différence des IP, les hostnames et containers names ne changent pas donc cette résoluation par DNS rend la communication beaucoup plus simple, surtout avec docker compose.
 
 ## Commandes courantes Network
-`docker network ls`
-`docker network inspect <NETWORK_NAME>`
-`docker network create <NETWORK_NAME>`
-`docker container run -d --name <CONTAINER_NAME> --network <NETWORK_NAME> <IMAGE>`
+- `docker network ls`
+- `docker network inspect <NETWORK_NAME>`
+- `docker network create <NETWORK_NAME>`
+- `docker container run -d --name <CONTAINER_NAME> --network <NETWORK_NAME> <IMAGE>`
 
 
 # Volume
