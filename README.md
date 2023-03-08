@@ -40,8 +40,13 @@ https://docs.docker.com/reference/
 En pratique, il est assez rare d'utiliser la CLI docker dans un projet.
 On build nos images avec un Dockerfile et on paramètre nos containers avec Compose.  
 
+# Dockerfile
+
+# Docker compose
+
 ## La principale différence entre Dockerfile et docker-compose
 Le contenu d'un Dockerfile décrit comment créer et construire une image Docker, tandis que docker compose est une commande qui exécute des conteneurs Docker en fonction des paramètres décrits dans un fichier docker-compose.yaml.  
+Un fichier docker-compose.yaml peut référencer un Dockerfile, mais un Dockerfile ne peut pas référencer un fichier docker-compose.  
 
 # Network 
 
@@ -81,6 +86,12 @@ Pour déployer une application, on doit configurer les ports exposés par chaque
 - Utiliser des ports de conteneur aléatoires : on peut utiliser l'option -P pour mapper automatiquement les ports du conteneur à des ports aléatoires sur l'host Docker. C'est utile pour les conteneurs qui ont besoin de ports différents chaque fois qu'ils sont exécutés.
 
 - Utiliser des ports de conteneur définis manuellement : pour les conteneurs qui nécessitent des ports spécifiques pour communiquer avec d'autres services ou pour être accessibles depuis l'extérieur, vous pouvez utiliser l'option -p pour mapper des ports spécifiques du conteneur à des ports spécifiques sur l'host Docker. C'est utile pour les conteneurs qui ont besoin de ports spécifiques chaque fois qu'ils sont exécutés.
+
+## Commandes courantes Network
+`docker network ls`
+`docker network inspect <NETWORK_NAME>`
+`docker network create <NETWORK_NAME>`
+`docker container run -d --name <CONTAINER_NAME> --network <NETWORK_NAME> <IMAGE>`
 
 
 # Volume
