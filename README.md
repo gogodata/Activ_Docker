@@ -87,6 +87,26 @@ Pour déployer une application, on doit configurer les ports exposés par chaque
 
 - Utiliser des ports de conteneur définis manuellement : pour les conteneurs qui nécessitent des ports spécifiques pour communiquer avec d'autres services ou pour être accessibles depuis l'extérieur, vous pouvez utiliser l'option -p pour mapper des ports spécifiques du conteneur à des ports spécifiques sur l'host Docker. C'est utile pour les conteneurs qui ont besoin de ports spécifiques chaque fois qu'ils sont exécutés.
 
+## Oublier les IP, on parle DNS ici
+
+L'utilisation d'IP statiques et d'IP pour commmuniquer avec des containers est à proscrire, c'est un anti-pattern qu'il faut éviter.  
+Le daemon Docker dispose d'un serveur DNS built-in utilisé par défaut par les containers. On utilisera donc la méthode de DNS naming pour la communication entre nos conteneurs. Docker définit par défaut le nom d'hôte sur le nom du conteneur, on peut aussi définir des alias.  
+Les alias sont indispensables dans le cas où on a besoin d'une applications identiques sur plusieurs containers différents.
+
+On crée notre network :  
+`docker network create toto_network`
+
+On joue 2 fois la commande suivante pour créer 2 containers avec le meme network et alias :  
+`docker container run -dit --network toto_network --network-alias toto_alias <IMAGE_NAME>`
+
+<img width="1560" alt="image" src="https://user-images.githubusercontent.com/45535819/223751426-ea1a30b9-fc8d-4534-85d4-7797656920bd.png">
+
+On voit bien les 2 containers :  
+![image](https://user-images.githubusercontent.com/45535819/223752203-6c722cca-cb20-455f-b1e2-e56e0445d3da.png)
+
+
+A la différence des IP, les hostnames et containers names ne changent pas donc cette résoluation par DNS rend la communication beaucoup plus simple, surtout avec docker compose.
+
 ## Commandes courantes Network
 `docker network ls`
 `docker network inspect <NETWORK_NAME>`
