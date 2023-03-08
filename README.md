@@ -121,7 +121,7 @@ A la différence des IP, les hostnames et containers names ne changent pas donc 
 - `docker network ls`
 - `docker network inspect <NETWORK_NAME>`
 - `docker network create <NETWORK_NAME>`
-- `docker container run -d --name <CONTAINER_NAME> --network <NETWORK_NAME> <IMAGE>`
+- `docker container run -d -p <PORT:PORT> --name <CONTAINER_NAME> --network <NETWORK_NAME> <IMAGE>`
 
 
 # Volume
