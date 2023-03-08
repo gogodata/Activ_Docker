@@ -87,6 +87,16 @@ Pour déployer une application, on doit configurer les ports exposés par chaque
 
 - Utiliser des ports de conteneur définis manuellement : pour les conteneurs qui nécessitent des ports spécifiques pour communiquer avec d'autres services ou pour être accessibles depuis l'extérieur, vous pouvez utiliser l'option -p pour mapper des ports spécifiques du conteneur à des ports spécifiques sur l'host Docker. C'est utile pour les conteneurs qui ont besoin de ports spécifiques chaque fois qu'ils sont exécutés.
 
+## Pourquoi exposer les ports
+
+Le port mapping rend les processus à l'intérieur du conteneur disponibles depuis l'extérieur. Lors de l'exécution d'un nouveau conteneur Docker, nous pouvons attribuer le mappage de port dans la commande docker run à l'aide de l'option -p :  
+`docker run -d -p 81:80 --name httpd-container httpd`
+
+
+La commande ci-dessus lance un conteneur httpd et mappe le port 81 de l'hôte au port 80 à l'intérieur de ce conteneur. Par défaut, le serveur httpd écoute sur le port 80. Ainsi, nous pouvons maintenant accéder à l'application en utilisant le port 81 sur la machine hôte :  
+`curl http://localhost:81`
+
+
 ## Oublier les IP, on parle DNS ici
 
 L'utilisation d'IP statiques et d'IP pour commmuniquer avec des containers est à proscrire, c'est un anti-pattern qu'il faut éviter.  
