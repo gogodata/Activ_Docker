@@ -58,7 +58,7 @@ Le contenu d'un Dockerfile décrit comment créer et construire une image Docker
 
 ## Bonnes pratiques Network
 
-- Pour déployer une application en production à l'aide de Docker, il faut faire attention à la configuration réseau. Voici quelques bonnes pratiques à suivre pour déployer une application en environnement de production :
+Pour déployer une application en production à l'aide de Docker, il faut faire attention à la configuration réseau. Voici quelques bonnes pratiques à suivre pour déployer une application en environnement de production :
 - Utilisez des réseaux Docker séparés pour les différents composants de votre application : il est recommandé de créer un réseau Docker pour chaque composant de votre application (par exemple, un réseau pour la base de données, un réseau pour l'API, etc.). Cela permet d'isoler les différents composants et d'améliorer la sécurité et la gestion des réseaux.
 - Utilisez des ponts réseau personnalisés plutôt que le réseau par défaut : il est recommandé de créer des ponts réseau personnalisés pour vos différents réseaux Docker plutôt que d'utiliser le réseau par défaut de Docker. Cela vous permet de définir des paramètres de réseau personnalisés tels que des sous-réseaux, des adresses IP statiques, des noms de domaine personnalisés, etc.
 - Utilisez un réseau externe pour exposer votre application : si vous avez besoin d'exposer votre application à l'extérieur de Docker (par exemple, pour accéder à une application Web depuis un navigateur), vous pouvez créer un réseau externe Docker. Cela vous permet d'exposer les ports de votre conteneur Docker sur l'hôte Docker et de les rendre accessibles à l'extérieur.
