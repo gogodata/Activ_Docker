@@ -45,21 +45,32 @@ Le contenu d'un Dockerfile décrit comment créer et construire une image Docker
 
 # Network 
 
-Il y a plusieurs types de network sur Docker :
-- bridge: c'est le network driver par défaut si on ne spécifie pas de driver lors de la création d'un network. Il est généralement utilisé lorsque notre application s'exécute dans des conteneurs standalone (autonomes) qui doivent communiquer entre eux.
+## Types de network sur Docker
+- bridge: c'est le network driver par défaut si on ne spécifie pas de driver lors de la création d'un network. Il est généralement utilisé lorsque notre application s'exécute dans des conteneurs standalone (autonomes) qui doivent communiquer entre eux. Le network bridge par défaut est considéré comme un détail "legacy" de Docker et n'est pas recommandé pour une utilisation en production.
 - host: Pour des conteneurs standalone, le host network supprime l'isolation réseau entre le container et le host (la machine sur laquelle tourne notre Docker). Donc ce network utilise directement le réseau de l'host.
 - overlay: Le network Overlay connecte plusieurs daemons Docker ensemble et permettent aux services Swarm de communiquer entre eux. Il permet aussi de faciliter la communication entre un service swarm et un conteneur standalone, ou entre deux conteneurs standalone sur différents daemons Docker. Cette stratégie supprime la nécessité d'effectuer un routage au niveau du système d'exploitation entre ces conteneurs.
 - ipvlan: pour les utilisateurs intéressés, les réseaux IPvlan donnent aux utilisateurs un contrôle total sur l'adressage IPv4 et IPv6.
 - macvlan: Les réseaux Macvlan vous permettent d'attribuer une adresse MAC à un conteneur, le faisant apparaître comme un périphérique physique sur votre réseau. Le daemon Docker achemine le trafic vers les conteneurs par leurs adresses MAC. L'utilisation du pilote macvlan est parfois le meilleur choix lorsqu'il s'agit d'applications "legacy" qui s'attendent à être directement connectées au réseau physique.
-- none: Conteneur attaché à aucun réseau. Usually used in conjunction with a custom network driver. none is not available for swarm services. Le paramètre --network none lors du démarrage d'un conteneur permet de désactiver complètement la pile réseau pour n'avoir seulement que le loop device de créer. Le loop device est un périphérique bloc qui mappe ses blocs de données non pas sur un périphérique physique tel qu'un disque, mais sur les blocs d'un fichier normal dans un filesystem ou sur un autre block device.  
+- none: Ce network permet de désactiver toute la pile réseau d'un conteneur. Il est généralement utilisé en conjonction avec un custom network driver. none n'est pas disponible pour les services Swarm.
+- Usually used in conjunction with a custom network driver. none is not available for swarm services. Le paramètre --network none lors du démarrage d'un conteneur permet de désactiver complètement la pile réseau pour n'avoir seulement que le loop device de créer. Le loop device est un périphérique bloc qui mappe ses blocs de données non pas sur un périphérique physique tel qu'un disque, mais sur les blocs d'un fichier normal dans un filesystem ou sur un autre block device. Pour créer un container sans réseau :  
 `docker run --rm -dit --network none --name no-net-alpine alpine:latest bash`
-- Network plugins: On peut installer des third-party network plugins avec Docker. Ils sont disponibles sur Docker Hub ou directement  third-party vendors.
+- Network plugins: On peut installer des third-party network plugins avec Docker. Ils sont disponibles sur Docker Hub ou directement chez les third-party vendors. Les plugins network permettent d'étendre les déploiements pour prendre en charge un large éventail de technologies de mise en réseau, telles que VXLAN, IPVLAN, MACVLAN ou autres.
+
+## Bonnes pratiques Network
+
+- Pour déployer une application en production à l'aide de Docker, il faut faire attention à la configuration réseau. Voici quelques bonnes pratiques à suivre pour déployer une application en environnement de production :
+- Utilisez des réseaux Docker séparés pour les différents composants de votre application : il est recommandé de créer un réseau Docker pour chaque composant de votre application (par exemple, un réseau pour la base de données, un réseau pour l'API, etc.). Cela permet d'isoler les différents composants et d'améliorer la sécurité et la gestion des réseaux.
+- Utilisez des ponts réseau personnalisés plutôt que le réseau par défaut : il est recommandé de créer des ponts réseau personnalisés pour vos différents réseaux Docker plutôt que d'utiliser le réseau par défaut de Docker. Cela vous permet de définir des paramètres de réseau personnalisés tels que des sous-réseaux, des adresses IP statiques, des noms de domaine personnalisés, etc.
+- Utilisez un réseau externe pour exposer votre application : si vous avez besoin d'exposer votre application à l'extérieur de Docker (par exemple, pour accéder à une application Web depuis un navigateur), vous pouvez créer un réseau externe Docker. Cela vous permet d'exposer les ports de votre conteneur Docker sur l'hôte Docker et de les rendre accessibles à l'extérieur.
+- Utilisez un service de découverte de services : pour améliorer la gestion des réseaux et la résilience de votre application, vous pouvez utiliser un service de découverte de services tel que Consul, etcd ou Zookeeper. Ces services permettent à vos différents composants de découvrir automatiquement les autres composants et de s'adapter aux changements de configuration en temps réel.
+- Utilisez des équilibreurs de charge pour répartir la charge : si votre application nécessite de traiter de grandes quantités de trafic, vous pouvez utiliser des équilibreurs de charge tels que HAProxy ou NGINX pour répartir la charge entre les différents conteneurs Docker de votre application.
+
 
 ## Les intervalles de ports par défaut
 On distingue trois intervalles de ports distincts définis par Internet Assigned Numbers Authority (IANA) :  
 - Les ports de 0 à 1 023, ports réservés, sont essentiellement utilisés par des services et applications réseaux. Par exemple SSH, HTTP, SMTP etc.
 - Les ports de 1 024 à 49 151, ports reconnus, sont souvent utilisés comme port local afin d’effectuer une connexion distante. En général, ces derniers sont entre 1024 et 5000.
-- Les ports de 49 152 à 65 535 sont des ports dynamiques pour les requêtes TCP ou UDP
+- Les ports de 49 152 à 65 535 sont des ports dynamiques pour les requêtes TCP ou UDP. 
 
 # Volume
 Le principal problème d'un container Docker de base est que les données ne sont pas gardées sur disque une fois le container supprimé ou arrêté ?
