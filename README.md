@@ -93,11 +93,11 @@ Le port mapping rend les processus à l'intérieur du conteneur disponibles depu
 `docker run -d -p 81:80 --name httpd-container httpd`
 
 
-La commande ci-dessus lance un conteneur httpd et mappe le port 81 de l'hôte au port 80 à l'intérieur de ce conteneur. Par défaut, le serveur httpd écoute sur le port 80. Ainsi, nous pouvons maintenant accéder à l'application en utilisant le port 81 sur la machine hôte :  
+La commande ci-dessus lance un conteneur httpd et mappe le port 81 de l'host au port 80 du conteneur. Par défaut, le serveur httpd écoute sur le port 80. Ainsi, nous pouvons maintenant accéder à l'application en utilisant le port 81 de la machine hôte :  
 `curl http://localhost:81`
 
 
-## Oublier les IP, on parle DNS ici
+## Oublier les IP pour les DNS
 
 L'utilisation d'IP statiques et d'IP pour commmuniquer avec des containers est à proscrire, c'est un anti-pattern qu'il faut éviter.  
 Le daemon Docker dispose d'un serveur DNS built-in utilisé par défaut par les containers. On utilisera donc la méthode de DNS naming pour la communication entre nos conteneurs. Docker définit par défaut le nom d'hôte sur le nom du conteneur, on peut aussi définir des alias.  
@@ -115,7 +115,7 @@ On voit bien les 2 containers :
 ![image](https://user-images.githubusercontent.com/45535819/223752203-6c722cca-cb20-455f-b1e2-e56e0445d3da.png)
 
 
-A la différence des IP, les hostnames et containers names ne changent pas donc cette résoluation par DNS rend la communication beaucoup plus simple, surtout avec docker compose.
+A la différence des IP, les hostnames et containers names ne changent pas donc cette résolution par DNS rend la communication beaucoup plus simple, surtout avec docker compose.
 
 ## Commandes courantes Network
 - `docker network ls`
