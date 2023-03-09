@@ -18,7 +18,8 @@ Pour Windows, quelques adaptations sont à prévoir (WSL etc..)
   - Si besoin, on peut donner des paramètres de lancement pour augmenter les ressources allouées :  
   `colima start --cpu 4 --memory 8 --disk 100`.  
 
-- IDE (VS Code pour moi)
+- IDE (VS Code pour moi) + Git + XCode
+- Nouveau BuildKit Docker : https://docs.docker.com/build/install-buildx/
 - Avoir/Créer un compte Docker Hub
 
 # Documentation Docker
