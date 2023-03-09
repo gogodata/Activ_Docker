@@ -13,7 +13,7 @@ Pour Windows, quelques adaptations sont à prévoir (WSL etc..)
 - Version MacOS à jour
 - Homebrew (packages manager)
 - Colima : suite à la mise à jour des accords de service le 31 août 2021, l'utilisation de Docker Desktop en milieu pro est payante, donc on choisit l'alternative open-source Colima. Colima est une VM qui fournit des runtimes docker sur MacOS et Linux.
-  -  Comme on est sur MAC, on utilise le runtimes docker Colima :  
+  -  En effet, comme on est sur MAC, on utilise le runtimes docker Colima :  
   `colima start`. 
   - Si besoin, on peut donner des paramètres de lancement pour augmenter les ressources allouées :  
   `colima start --cpu 4 --memory 8 --disk 100`.  
