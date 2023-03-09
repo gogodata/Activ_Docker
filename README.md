@@ -89,11 +89,11 @@ Pour déployer une application, on doit configurer les ports exposés par chaque
 
 ## Pourquoi exposer les ports
 
-Le port mapping rend les processus à l'intérieur du conteneur disponibles depuis l'extérieur. Lors de l'exécution d'un nouveau conteneur Docker, nous pouvons attribuer le mappage de port dans la commande docker run à l'aide de l'option -p :  
+Le port mapping rend les processus à l'intérieur du conteneur disponibles depuis l'extérieur. Lors de l'exécution d'un nouveau conteneur Docker, on peut attribuer le mappage de port dans la commande docker run à l'aide de l'option -p, par exemple :  
 `docker run -d -p 81:80 --name httpd-container httpd`
 
 
-La commande ci-dessus lance un conteneur httpd et mappe le port 81 de l'host au port 80 du conteneur. Par défaut, le serveur httpd écoute sur le port 80. Ainsi, nous pouvons maintenant accéder à l'application en utilisant le port 81 de la machine hôte :  
+La commande ci-dessus lance un conteneur httpd et mappe le port 81 de l'host au port 80 du conteneur. Par défaut, le serveur httpd écoute sur le port 80. On peut alors accéder à l'application en utilisant le port 81 de la machine hôte :  
 `curl http://localhost:81`
 
 
